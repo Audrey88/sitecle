@@ -12,117 +12,82 @@
 		</ul>
 		</note>
 
-			<!--avec anneau
-		<img src="/image/_DSC7842.jpg.">
-
-		avec laser
-		<img src="/image/_DSC7825.jpg">
-
-		 avec serif une couleur
-		<img src="/image/_DSC7839.jpg">
--->
+	<input type="range" id="quantite" name="qt" min="500" max="10000" step="500" onchange="calcule">
 
 	<table border="1" cellpadding="10" >
 		<tr>
-			<th>Quantité</th>
 			<th>Avec Anneau</th>
 			<th>Gravure Laser</th>
-			<th>Serif 1 couleur</th>
-			<th>Serif 2 couleurs</th>
+			<th>Serigraphie</th>
 			<th>Total</th>
 		</tr>
 
 		<tr>
 			<form>
-			<th><input type="number" name="qtite" OnClick="choix_nombre"></input></th>
-			<th><input type="checkbox" class="option-un"></input></th>
-			<th><input type="checkbox" class="option-deux"></input></th>
-			<th><input type="checkbox" class="option-trois"></input></th>
-			<th><input type="checkbox" class="option-quatre"></input></th>
-			<th><input type="text" class="total"></input></th>
+			<th><select>
+					<option id="sans_anneau" onchange="" value="">sans anneau</option>
+					<option id="avec_anneau" onchange="" value="">avec anneau</option>
+				</select>
+			</th>
+			<th><select>
+					<option id="grav" value="" onchange="">avec laser</option>
+				</select>
+			</th>
+			<th><select>
+				<option id="seri_un" onchange="calcule" value="">Serigraphe 1 couleur</option>
+				<option id="seri_deux" value="" onchange="calcule">Serigraphe 2 couleurs</option>
+				</select>
+			</th>
+			<th><input type="text" name="total"></input></th>
 			</form>
 		</tr>
 	</table>
 
-	<button>COMMANDER!</button>
+	<button onclick="total_1">COMMANDER!</button>
 
 	<img src="/image/Paypal.gif"><!--paypal-->
-	<a href=""> conditions de réglement</a>
+	<a href="https://www.paypal.com/fr/webapps/mpp/ua/useragreement-full"> conditions de réglement</a>
 
 
 <script type="text/javascript">
-	
-choix_nombre= function nombre(resultat){
-	var resultat=document.forms["general"].elements('qtite');
-	if (resultat<= 10000){
-		return resultat;
+	function calcule(){
+
+var q= document.getElementById('quantite').value
+var a= document.getElementById('grav').value
+var c= document.getElementById('seri_un').value
+var e= document.getElementById('seri_deux').value
+
+
+
+function laser(){
+var a = (1.80-1.09)/19;
+  var b = q/500-1;
+   b = a*b;
+   b = 1.80-b;
+   b = b.toFixed(2);
+   return b;
 	}
 
-	else if (resultat>= 500){
-		return resultat;
+function serif(){
+var c = (2.10-1.35)/19;
+  var d = q/500-1;
+   d = c*d;
+   d = 2.10-d;
+   d = d.toFixed(2);
+   return d;
 	}
 
-	else if (resultat%500=0){
-		return resultat;
+function serig(){
+var e = (2.25-1.42)/19;
+  var f = q/500-1;
+   f = e*f;
+   f = 2.25-b;
+   f = f.toFixed(2);
+   return f;
 	}
 
-	else {
-		 alert("nombre choisit Incorrect");
-	}
+
 }
-
-
-/*choix_nombre= function nombre(resultat){
-	var a= resultat
-	for (var i = 500; i <= 10000; i=i+500) {
-		
-	}
-	return a
-}
-*/
-avec_anneau= function anneau(){
-
-	var condition_un= choix_nombre*0.50;
-	return condition_un;
-}
-
-avec_laser= function laser(){
-		var condition_deux= choix_nombre*1.80;
-	return condition_deux;
-}
-
-avec_seri_un= function isserun(){
-	var condition_trois= choix_nombre*2.10;
-	return condition_trois;
-}
-
-avec_seri_deux= function isserdeux(){
-	var condition_quatre= choix_nombre*2.29;
-	return condition_quatre;
-}
-
-total_1= function totalun(){
-	return avec_laser+avec_anneau+avec_seri_deux+avec_seri_un;
-}
-
-frais_port= function frais(){
-	if (choix_nombre=500){
-		return total_1+5,90;
-	}
-
-	else if (choix_nombre>500){
-		for (i=O; i<=10000; i+500){
-			var a= i+5.90+ 2;
-			return a;
-		}
-	return a;
-}
-
-total= function total(htc){
-	return frais_port+total_1;
-}
-
-
 
 </script>
 
