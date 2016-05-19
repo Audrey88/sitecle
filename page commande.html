@@ -3,16 +3,58 @@
 <head>
 	<title></title>
 	<meta charset="UTF-8">
+	<style type="text/css">
+
+table {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+article{
+	width: 40%;
+	border: 1px solid black;
+	float: center;
+}
+
+ul {
+	color: red;
+	font-weight: bold;
+}
+
+#bloc {
+	display: block;
+	float: right;
+	width: 60%;
+	margin-top: 30px;
+}
+
+#quantite {
+	width: 40%;
+	float: center;
+}
+
+#frais { 
+	display: block;
+	float: right;
+	margin-top: 30px;
+	width: 60%;
+	border: 1px solid black;
+	text-align: center;
+}
+
+	</style>
+
 </head>
 <body>
-		<note>Note: 
+		<article>Note: 
 		<ul>
 			<li> quantité minimale pour commande: 500 pièces.</li>
 			<li>quantité maximale pour commande: 10000 pièces.</li>
 		</ul>
-		</note>
+		</article>
 
-	<input type="range" id="quantite" name="qt" min="500" max="10000" step="500" onchange="calcule">
+	<div id="bloc">
+	<input type="range" id="quantite" name="qt" min="500" max="10000" step="500" onchange="calcule" value="500">
 
 	<table border="1" cellpadding="10" >
 		<tr>
@@ -42,17 +84,22 @@
 			</form>
 		</tr>
 	</table>
+	</div>
 
-	<button onclick="total_1">COMMANDER!</button>
+	<div id="frais">
+	<p>Frais de port: 5,40€ +2€ par tranche de 500 pièces <br> Total final:
+	<input type="text" name="total"></input></p>
+	<button>COMMANDER!</button>
 
 	<img src="/image/Paypal.gif"><!--paypal-->
 	<a href="https://www.paypal.com/fr/webapps/mpp/ua/useragreement-full"> conditions de réglement</a>
-
+	</div>
 
 <script type="text/javascript">
 	function calcule(){
 
 var q= document.getElementById('quantite').value
+var h= document.getElementById('avec_anneau').value
 var a= document.getElementById('grav').value
 var c= document.getElementById('seri_un').value
 var e= document.getElementById('seri_deux').value
@@ -81,9 +128,14 @@ function serig(){
 var e = (2.25-1.42)/19;
   var f = q/500-1;
    f = e*f;
-   f = 2.25-b;
+   f = 2.25-f;
    f = f.toFixed(2);
    return f;
+	}
+function anneau(){
+  var h = q* 0.15;
+   h = h.toFixed(2);
+   return h;
 	}
 
 
